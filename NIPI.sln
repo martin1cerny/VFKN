@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VFKN", "VFKN\VFKN.csproj", "{D8E2902F-8DA7-4DAA-83CC-2BBAFECF907B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VFKN.Tests", "UnitTestProject1\VFKN.Tests.csproj", "{A2281232-D315-43FD-B568-03EC233E2425}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VFKN.Tests", "VFKN.Tests\VFKN.Tests.csproj", "{A2281232-D315-43FD-B568-03EC233E2425}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
