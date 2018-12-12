@@ -147,6 +147,20 @@ namespace VFKN.Parser
                     field.SetValue(currentEntity, l);
                 return;
             }
+
+            if (type.IsEnum)
+            {
+                try
+                {
+                    var e = Enum.Parse(type, value);
+                    field.SetValue(currentEntity, e);
+                }
+                catch (Exception)
+                {
+                    logger.LogWarning($"Unexpected enum {type.Name} value: {value}");
+                }
+            }
+
             logger.LogWarning($"Unexpected value type: {type.Name}");
         }
 

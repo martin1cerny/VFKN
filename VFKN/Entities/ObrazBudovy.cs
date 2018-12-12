@@ -22,7 +22,7 @@ namespace VFKN.Entities
         public string BUD_ID;
         public string OBRBUD_TYPE;
 
-        public Point DefinitionPoint
+        public Point Point
         {
             get
             {

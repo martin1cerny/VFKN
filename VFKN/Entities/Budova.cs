@@ -46,7 +46,7 @@ namespace VFKN.Entities
                 var obr = Model.Get<ObrazBudovy>(o => o.BUD_ID == ID && !o.IsPerimeterPoint).FirstOrDefault();
                 if (obr == null)
                     return null;
-                return obr.DefinitionPoint;
+                return obr.Point;
             }
         }
 
