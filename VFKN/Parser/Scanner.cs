@@ -6,14 +6,14 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  DESKTOP-VAJP4OB
-//  DateTime: 12/12/2018 10:10:13
+//  DateTime: 12/12/2018 10:36:53
 //  UserName: Martin
-//  GPLEX input file <Scanner.lex - 12/12/2018 10:10:11>
+//  GPLEX input file <Scanner.lex - 12/12/2018 10:36:51>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: unicode, verbose, noParser, minimize
 //  Option settings: classes, compressMap, noCompressNext, noPersistBuffer, embedbuffers
-//  Fallback code page: Target machine default
+//  Fallback code page: 28592
 //
 
 //
@@ -124,14 +124,14 @@ namespace VFKN.Parser
         
         enum Result {accept, noMatch, contextFound};
 
-        const int maxAccept = 20;
-        const int initial = 21;
+        const int maxAccept = 22;
+        const int initial = 23;
         const int eofNum = 0;
         const int goStart = -1;
         const int INITIAL = 0;
 
 #region user code
-LexLocation yylloc;
+public LexLocation yylloc;
 #endregion user code
 
         int state;
@@ -155,11 +155,11 @@ LexLocation yylloc;
 #endif // STACK
 
 #region ScannerTables
-  static int[] startState = new int[] {21, 0};
+  static int[] startState = new int[] {23, 0};
 
 #region CompressedCharacterMap
     //
-    // There are 20 equivalence classes
+    // There are 24 equivalence classes
     // There are 2 character sequence regions
     // There are 1 tables, 165 entries
     // There are 1 runs, 0 singletons
@@ -168,10 +168,10 @@ LexLocation yylloc;
     static sbyte[] mapC0 = new sbyte[165] {
 /*     '\0' */ 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 0, 0, 16, 0, 0, 
 /*   '\x10' */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-/*   '\x20' */ 2, 0, 14, 0, 0, 0, 5, 0, 0, 0, 0, 11, 0, 11, 13, 0, 
-/*      '0' */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 19, 0, 0, 0, 0, 
-/*      '@' */ 0, 18, 8, 18, 9, 18, 18, 18, 6, 18, 18, 10, 18, 18, 18, 18, 
-/*      'P' */ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 0, 0, 0, 0, 17, 
+/*   '\x20' */ 2, 0, 14, 0, 0, 0, 5, 0, 0, 0, 0, 11, 0, 19, 13, 20, 
+/*      '0' */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 23, 0, 0, 0, 0, 
+/*      '@' */ 0, 22, 8, 22, 9, 22, 22, 22, 6, 22, 22, 10, 22, 18, 22, 22, 
+/*      'P' */ 17, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 0, 0, 0, 0, 21, 
 /*      '`' */ 0, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 
 /*      'p' */ 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 
 /*   '\x80' */ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
@@ -187,77 +187,109 @@ LexLocation yylloc;
     }
 #endregion
 
-  static sbyte[][] nextState = new sbyte[25][] {
+  static sbyte[][] nextState = new sbyte[36][] {
 /* nextState[   0] */ new sbyte[] { // Shortest string ""
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-        0, 0, 0, 0},
+        0, 0, 0, 0, 0, 0, 0, 0},
 /* nextState[   1] */ new sbyte[] { // Shortest string "\xA4"
         -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-        -1, -1, -1, -1},
+        -1, -1, -1, -1, -1, -1, -1, -1},
 /* nextState[   2] */ null, // Shortest string "\t"
 /* nextState[   3] */ null, // Shortest string "\x20"
 /* nextState[   4] */ new sbyte[] { // Shortest string "\0"
         -1, -1, -1, 4, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-        -1, -1, -1, -1},
+        -1, -1, -1, -1, -1, -1, -1, -1},
 /* nextState[   5] */ null, // Shortest string "\n"
 /* nextState[   6] */ new sbyte[] { // Shortest string "&"
-        -1, -1, -1, -1, -1, -1, 17, -1, 18, 19, 20, -1, -1, -1, -1, -1, 
-        -1, -1, -1, -1},
+        -1, -1, -1, -1, -1, -1, 19, -1, 20, 21, 22, -1, -1, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
 /* nextState[   7] */ new sbyte[] { // Shortest string "H"
-        -1, -1, 23, -1, -1, -1, 24, 24, 24, 24, 24, -1, 24, -1, -1, -1, 
-        -1, 24, 24, -1},
+        -1, -1, 24, -1, -1, -1, 25, 25, 25, 25, 25, -1, 25, -1, -1, -1, 
+        -1, 25, 25, -1, -1, 25, 25, -1},
 /* nextState[   8] */ new sbyte[] { // Shortest string "+"
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 8, 14, -1, -1, 
-        -1, -1, -1, -1},
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 8, 18, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
 /* nextState[   9] */ new sbyte[] { // Shortest string "0"
-        -1, -1, 23, -1, -1, -1, 24, 24, 24, 24, 24, -1, 9, 14, -1, -1, 
-        -1, 24, 24, -1},
+        -1, -1, 24, -1, -1, -1, 25, 25, 25, 25, 25, -1, 9, 18, -1, -1, 
+        -1, 25, 25, -1, -1, 25, 25, -1},
 /* nextState[  10] */ new sbyte[] { // Shortest string "."
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, 14, -1, -1, 
-        -1, -1, -1, -1},
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 18, 18, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
 /* nextState[  11] */ new sbyte[] { // Shortest string "\""
-        22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 13, 22, 
-        22, 22, 22, 22},
-/* nextState[  12] */ null, // Shortest string ";"
-/* nextState[  13] */ new sbyte[] { // Shortest string "\"\""
-        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 22, -1, 
-        -1, -1, -1, -1},
-/* nextState[  14] */ null, // Shortest string "+."
+        35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 17, 35, 
+        35, 35, 35, 35, 35, 35, 35, 35},
+/* nextState[  12] */ new sbyte[] { // Shortest string "P"
+        -1, -1, 24, -1, -1, -1, 25, 25, 25, 25, 25, -1, 25, -1, -1, -1, 
+        -1, 25, 26, -1, -1, 25, 25, -1},
+/* nextState[  13] */ null, // Shortest string ";"
+/* nextState[  14] */ new sbyte[] { // Shortest string "PM-0/0000-0"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 14, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
 /* nextState[  15] */ new sbyte[] { // Shortest string "H\x20H"
         -1, -1, -1, -1, -1, -1, 15, -1, 15, 15, 15, -1, 16, 16, -1, -1, 
-        -1, -1, 15, -1},
+        -1, 15, 15, -1, -1, -1, 15, -1},
 /* nextState[  16] */ new sbyte[] { // Shortest string "H\x20H0"
         -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 16, 16, -1, -1, 
-        -1, -1, -1, -1},
-/* nextState[  17] */ new sbyte[] { // Shortest string "&H"
-        -1, -1, -1, -1, -1, -1, 17, 17, 17, 17, 17, -1, 17, -1, -1, -1, 
-        -1, -1, 17, -1},
-/* nextState[  18] */ new sbyte[] { // Shortest string "&B"
-        -1, -1, -1, -1, -1, -1, 18, 18, 18, 18, 18, -1, 18, -1, -1, -1, 
-        -1, -1, 18, -1},
-/* nextState[  19] */ new sbyte[] { // Shortest string "&D"
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  17] */ new sbyte[] { // Shortest string "\"\""
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 35, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  18] */ null, // Shortest string "+."
+/* nextState[  19] */ new sbyte[] { // Shortest string "&H"
         -1, -1, -1, -1, -1, -1, 19, 19, 19, 19, 19, -1, 19, -1, -1, -1, 
-        -1, -1, 19, -1},
-/* nextState[  20] */ null, // Shortest string "&K"
-/* nextState[  21] */ new sbyte[] { // Shortest string ""
+        -1, 19, 19, -1, -1, -1, 19, -1},
+/* nextState[  20] */ new sbyte[] { // Shortest string "&B"
+        -1, -1, -1, -1, -1, -1, 20, 20, 20, 20, 20, -1, 20, -1, -1, -1, 
+        -1, 20, 20, -1, -1, -1, 20, -1},
+/* nextState[  21] */ new sbyte[] { // Shortest string "&D"
+        -1, -1, -1, -1, -1, -1, 21, 21, 21, 21, 21, -1, 21, -1, -1, -1, 
+        -1, 21, 21, -1, -1, -1, 21, -1},
+/* nextState[  22] */ null, // Shortest string "&K"
+/* nextState[  23] */ new sbyte[] { // Shortest string ""
         1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 8, 9, 10, 11, 1, 
-        5, 7, 7, 12},
-/* nextState[  22] */ null, // Shortest string "\"\t"
-/* nextState[  23] */ new sbyte[] { // Shortest string "H\x20"
+        5, 12, 7, 8, 1, 7, 7, 13},
+/* nextState[  24] */ new sbyte[] { // Shortest string "H\x20"
         -1, -1, -1, -1, -1, -1, 15, -1, 15, 15, 15, -1, -1, -1, -1, -1, 
-        -1, -1, 15, -1},
-/* nextState[  24] */ null, // Shortest string "HH"
+        -1, 15, 15, -1, -1, -1, 15, -1},
+/* nextState[  25] */ null, // Shortest string "HH"
+/* nextState[  26] */ new sbyte[] { // Shortest string "PM"
+        -1, -1, 24, -1, -1, -1, 25, 25, 25, 25, 25, -1, 25, -1, -1, -1, 
+        -1, 25, 25, 27, -1, 25, 25, -1},
+/* nextState[  27] */ new sbyte[] { // Shortest string "PM-"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 28, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  28] */ new sbyte[] { // Shortest string "PM-0"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 28, -1, -1, -1, 
+        -1, -1, -1, -1, 29, -1, -1, -1},
+/* nextState[  29] */ new sbyte[] { // Shortest string "PM-0/"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 30, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  30] */ new sbyte[] { // Shortest string "PM-0/0"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 31, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  31] */ new sbyte[] { // Shortest string "PM-0/00"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 32, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  32] */ new sbyte[] { // Shortest string "PM-0/000"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 33, -1, -1, -1, 
+        -1, -1, -1, -1, -1, -1, -1, -1},
+/* nextState[  33] */ new sbyte[] { // Shortest string "PM-0/0000"
+        -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+        -1, -1, -1, 34, -1, -1, -1, -1},
+/* nextState[  34] */ null, // Shortest string "PM-0/0000-"
+/* nextState[  35] */ null, // Shortest string "\"\t"
 };
 
   static Scanner() {
       nextState[2] = nextState[1];
       nextState[3] = nextState[1];
       nextState[5] = nextState[1];
-      nextState[12] = nextState[1];
-      nextState[14] = nextState[10];
-      nextState[20] = nextState[1];
-      nextState[22] = nextState[11];
-      nextState[24] = nextState[7];
+      nextState[13] = nextState[1];
+      nextState[18] = nextState[10];
+      nextState[22] = nextState[1];
+      nextState[25] = nextState[7];
+      nextState[34] = nextState[14];
+      nextState[35] = nextState[11];
   }
 
 
@@ -336,7 +368,7 @@ int NextState() {
 
 #if !NOFILES
      public Scanner(Stream file) {
-            SetSource(file, 0); // unicode option
+            SetSource(file, 28592); // unicode option
         }
 
         public Scanner(Stream file, string codepage) {
@@ -690,6 +722,7 @@ int NextState() {
         case 7: // Recognized '.',	Shortest string "H"
         case 10: // Recognized '.',	Shortest string "."
         case 11: // Recognized '.',	Shortest string "\""
+        case 12: // Recognized '.',	Shortest string "P"
 return (int)Tokens.error;
             break;
         case 2: // Recognized '"\t"',	Shortest string "\t"
@@ -708,29 +741,32 @@ return (int)Tokens.EOL;
         case 9: // Recognized '[\-\+0-9][0-9]*',	Shortest string "0"
 return (int)Tokens.INTEGER;
             break;
-        case 12: // Recognized '[;]',	Shortest string ";"
+        case 13: // Recognized '[;]',	Shortest string ";"
 return (int)Tokens.ENDCOL;
             break;
-        case 13: // Recognized '[\"](¤[\r][\n]|[\"][\"]|[^\"])*[\"]',	Shortest string "\"\""
+        case 14: // Recognized 'PM[\-][0-9]+\/[0-9]{4}[\-][0-9]+',	Shortest string "PM-0/0000-0"
 return (int)Tokens.STRING;
-            break;
-        case 14: // Recognized '[\-\+\.0-9][\.0-9]+',	Shortest string "+."
-return (int)Tokens.FLOAT;
             break;
         case 15: // Recognized '[a-zA-Z0-9_]+[ ][A-Z]+[0-9\.]*',	Shortest string "H\x20H"
         case 16: // Recognized '[a-zA-Z0-9_]+[ ][A-Z]+[0-9\.]*',	Shortest string "H\x20H0"
 return (int)Tokens.COL_HEADER;
             break;
-        case 17: // Recognized '&H[a-zA-Z0-9]*',	Shortest string "&H"
+        case 17: // Recognized '[\"](¤[\r][\n]|[\"][\"]|[^\"])*[\"]',	Shortest string "\"\""
+return (int)Tokens.STRING;
+            break;
+        case 18: // Recognized '[\-\+\.0-9][\.0-9]+',	Shortest string "+."
+return (int)Tokens.FLOAT;
+            break;
+        case 19: // Recognized '&H[a-zA-Z0-9]*',	Shortest string "&H"
 return (int)Tokens.HEADER;
             break;
-        case 18: // Recognized '&B[a-zA-Z0-9]*',	Shortest string "&B"
+        case 20: // Recognized '&B[a-zA-Z0-9]*',	Shortest string "&B"
 return (int)Tokens.BLOCK;
             break;
-        case 19: // Recognized '&D[a-zA-Z0-9]*',	Shortest string "&D"
+        case 21: // Recognized '&D[a-zA-Z0-9]*',	Shortest string "&D"
 return (int)Tokens.DATA;
             break;
-        case 20: // Recognized '&K',	Shortest string "&K"
+        case 22: // Recognized '&K',	Shortest string "&K"
 return (int)Tokens.END_VFKN;
             break;
         default:

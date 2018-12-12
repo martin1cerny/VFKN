@@ -112,5 +112,14 @@ namespace VFKN.Tests
             var tok = (Tokens)scanner.yylex();
             Assert.AreEqual(Tokens.error, tok);
         }
+
+        [TestMethod]
+        [DeploymentItem("Files\\PM.txt")]
+        public void PMString()
+        {
+            var scanner = Scanner.Create("Files\\PM.txt");
+            var tok = (Tokens)scanner.yylex();
+            Assert.AreEqual(Tokens.STRING, tok);
+        }
     }
 }

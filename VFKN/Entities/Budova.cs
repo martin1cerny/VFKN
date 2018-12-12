@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
+using VFKN.Geometry;
 
 namespace VFKN.Entities
 {
@@ -15,29 +14,59 @@ namespace VFKN.Entities
     /// Poznámka: Budova na cizím pozemku má jiné TEL_ID než parcela, na které leží.
     /// </summary>
     [Entity("BUD")]
-    public class Building: Entity
+    public class Budova : EntityWithID
     {
-        public Building(Model model): base (model) { }
+        public Budova(Model model) : base(model) { }
 
-        public int TYPBUD_KOD { get; set; }
-        public int CAOBCE_KOD { get; set; }
-        public int CISLO_DOMOVNI { get; set; }
-        public int CENA_NEMOVITOSTI { get; set; }
-        public int ZPVYBU_KOD { get; set; }
-        public int TEL_ID { get; set; }
+        public int TYPBUD_KOD;
+        public int? CAOBCE_KOD;
+        public int? CISLO_DOMOVNI;
+        public float? CENA_NEMOVITOSTI;
+        public int? ZPVYBU_KOD;
+        public string TEL_ID;
         /// <summary>
         /// Identifikátor dočasné stavby
         /// </summary>
-        public string DOCASNA_STAVBA { get; set; }
+        public string DOCASNA_STAVBA;
         /// <summary>
         /// Indikátor stavby, je-li součástí
         /// pozemku
         /// </summary>
-        public string JE_SOUCASTI { get; set; }
+        public string JE_SOUCASTI;
         /// <summary>
         /// Odkaz na unikátní generované číslo
         /// práva stavby
         /// </summary>
-        public int PS_ID { get; set; }
+        public string PS_ID;
+
+        public Point DefinitionPoint
+        {
+            get
+            {
+                var obr = Model.Get<ObrazBudovy>(o => o.BUD_ID == ID && !o.IsPerimeterPoint).FirstOrDefault();
+                if (obr == null)
+                    return null;
+                return obr.DefinitionPoint;
+            }
+        }
+
+        public Polygon Polygon
+        {
+            get
+            {
+                var spoj = Model.Get<ObrazBudovy>(o => o.BUD_ID == ID && o.IsPerimeterPoint)
+                    .SelectMany(o => Model.Get<SpojeniBoduPolohopisu>(s => s.OB_ID == o.ID))
+                    .OrderBy(s => s.PORADOVE_CISLO_BODU)
+                    .Select(s => Model.Get<SouradniceObrazu>(o => o.ID == s.BP_ID).FirstOrDefault())
+                    .Where(o => o != null)
+                    .Select(o => o.Point)
+                    .ToList();
+
+                if (spoj.Count == 0)
+                    return null;
+
+                return new Polygon { Points = spoj };
+            }
+        }
     }
 }

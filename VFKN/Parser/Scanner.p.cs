@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Extensions.Logging;
+using System.IO;
 using System.Text;
 
 namespace VFKN.Parser
@@ -21,6 +22,7 @@ namespace VFKN.Parser
 
         private static string GetCodePage(Stream stream)
         {
+            var log = LogProvider.GetLogger<Scanner>();
             var e = Encoding.GetEncoding("ISO-8859-2");
             using (var r = new StreamReader(stream, e, false, 1024, true))
             {
@@ -48,6 +50,7 @@ namespace VFKN.Parser
                 }
             }
             // default encoding
+            log.LogWarning("Codepage not defined in the file. Using default ISO-8859-2");
             return "ISO-8859-2";
         }
 
