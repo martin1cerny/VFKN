@@ -1,0 +1,52 @@
+/*
+=============================================================================
+NFSA Summary for input file <Scanner.lex>
+=============================================================================
+Total NFSA states = 120
+Number of Start Conditions = 1
+Start condition INITIAL:
+  number of patterns = 14, number of nfsa states = 71, accept states = 14
+=============================================================================
+GPLEX: NFSA built.    6 msec
+=============================================================================
+GPLEX: DFSA built.    5 msec
+=============================================================================
+GPLEX: DFSA minimized.    6 msec
+=============================================================================
+GPLEX: Shortest strings found.    0 msec
+=============================================================================
+DFSA Summary
+=============================================================================
+Number of dfsa instances = 1
+Start condition INITIAL:
+  number of dfsa states = 39, number of accept states = 31
+=============================================================================
+GPLEX: C# file emitted.   17 msec
+=============================================================================
+GPLEX Summary
+=============================================================================
+Total number of states = 25, total accept states = 20, backup states = 4
+Original state number was 40, minimized machine has 25 states
+Compression summary: used 340 nextstate entries, plus 165 map entries
+- Uncompressed automaton would have 27,852,800 nextstate entries
+- Input characters are packed into 20 equivalence classes
+- CharClass compression 100.00%, 20 entries Vs 1,114,112
+- Redundant row compression 32.00%, 340 entries Vs 500
+- CharacterMap compression is 99.99%, 165 entries Vs 1,114,112
+- Decision tree depth is 1
+
+Backup state report --- 
+In <0>, after "H" automaton could accept "." in state 7
+--- after ''\x20'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "0" automaton could accept "[\-\+0-9][0-9]*" in state 9
+--- after ''\x20'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "\"" automaton could accept "." in state 11
+--- after ''\x01'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "\"\"" automaton could accept "[\"](¤[\r][\n]|[\"][\"]|[^\"])*[\"]" in state 13
+--- after ''"'' automaton is in a non-accept state and might need to backup
+
+=============================================================================
+ */
