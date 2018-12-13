@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -125,26 +126,34 @@ namespace VFKN.Parser
                 return;
             if (type == typeof(float))
             {
-                if (float.TryParse(value, out float f))
+                if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float f))
                     field.SetValue(currentEntity, f);
+                else
+                    logger.LogWarning($"Value '{value}' can't be converted to expected type: {type.Name}");
                 return;
             }
             if (type == typeof(double))
             {
-                if (double.TryParse(value, out double d))
+                if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out double d))
                     field.SetValue(currentEntity, d);
+                else
+                    logger.LogWarning($"Value '{value}' can't be converted to expected type: {type.Name}");
                 return;
             }
             if (type == typeof(int))
             {
                 if (int.TryParse(value, out int i))
                     field.SetValue(currentEntity, i);
+                else
+                    logger.LogWarning($"Value '{value}' can't be converted to expected type: {type.Name}");
                 return;
             }
             if (type == typeof(long))
             {
                 if (long.TryParse(value, out long l))
                     field.SetValue(currentEntity, l);
+                else
+                    logger.LogWarning($"Value '{value}' can't be converted to expected type: {type.Name}");
                 return;
             }
 
@@ -157,7 +166,7 @@ namespace VFKN.Parser
                 }
                 catch (Exception)
                 {
-                    logger.LogWarning($"Unexpected enum {type.Name} value: {value}");
+                    logger.LogWarning($"Unexpected enum {type.Name} member name: {value}");
                 }
             }
 
