@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VFKN.Extensions;
 
 namespace VFKN.Entities
 {
@@ -16,5 +17,9 @@ namespace VFKN.Entities
         public int? PRIZNAK_KONTEXTU;
         public string RIZENI_ID_VZNIKU;
         public string RIZENI_ID_ZANIKU;
+
+        public DateTime? DatumVzniku => DATUM_VZNIKU.VfkToDateTime();
+        public DateTime? DatumZaniku => DATUM_ZANIKU.VfkToDateTime();
+        
     }
 }

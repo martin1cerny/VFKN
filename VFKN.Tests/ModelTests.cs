@@ -12,11 +12,14 @@ namespace VFKN.Tests
     {
         [TestMethod]
         [DeploymentItem("Files\\Export_vse.vfk")]
-        public void ReadModel()
+        public void ReadBuildingPolygon()
         {
             var model = Model.Open("Files\\Export_vse.vfk");
             var building = model.Get<Budova>(b => b.ID == "293210306").First();
             Assert.IsNotNull(building.Polygon);
+
+            building = model.Get<Budova>(b => b.ID == "323701306").First();
+            Assert.IsNotNull(building.Address.FirstOrDefault());
         }
     }
 }

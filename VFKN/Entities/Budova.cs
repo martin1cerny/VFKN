@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VFKN.Geometry;
 
 namespace VFKN.Entities
@@ -66,6 +67,26 @@ namespace VFKN.Entities
                     return null;
 
                 return new Polygon { Points = spoj };
+            }
+        }
+
+        public Parcela Parcela
+        {
+            get
+            {
+                return Model.Get<Parcela>(p => p.BUD_ID == ID).FirstOrDefault();
+            }
+        }
+
+        public IEnumerable<Adresa> Address
+        {
+            get
+            {
+                var ids = new HashSet<int>( Model
+                    .Get<Bud_Obj>(bo => bo.ID_KN == ID)
+                    .Where(bo => bo.ID_UA.HasValue)
+                    .Select(bo => bo.ID_UA.Value));
+                return Model.Get<Adresa>(a => ids.Contains(a.OBJEKT_KOD));
             }
         }
     }

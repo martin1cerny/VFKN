@@ -32,6 +32,14 @@ namespace VFKN.Entities
         public string BUD_ID;
         public string IDENT_BUD;
 
+        public Parcela JeDilemParcely => string.IsNullOrWhiteSpace(PAR_ID) ?
+            null :
+            Model.Get<Parcela>(b => b.ID == PAR_ID).FirstOrDefault();
+
+        public Budova Budova => string.IsNullOrWhiteSpace(BUD_ID) ? 
+            null : 
+            Model.Get<Budova>(b => b.ID == BUD_ID).FirstOrDefault();
+
         public Point DefinitionPoint
         {
             get
